@@ -62,7 +62,7 @@ export default function ProductCarousel({ children }) {
                         items: 3,
                         partialVisibilityGutter: 0,
                     },
-                    tablet2: {
+                    tablet3: {
                         breakpoint: {
                             max: 618,
                             min: 464,

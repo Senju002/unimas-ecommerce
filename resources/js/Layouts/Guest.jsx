@@ -35,7 +35,7 @@ export default function Guest({ children, auth, title }) {
                 className="p-1 font-normal hover:text-primary transition-all duration-300 hover:font-extrabold"
             >
                 <a href="#" className="flex items-center">
-                    Our Product
+                    Hubungi Kami
                 </a>
             </Typography>
             <Typography
@@ -45,17 +45,7 @@ export default function Guest({ children, auth, title }) {
                 className="p-1 font-normal hover:text-primary transition-all duration-300 hover:font-extrabold"
             >
                 <a href="#" className="flex items-center">
-                    Contact Us
-                </a>
-            </Typography>
-            <Typography
-                as="li"
-                variant="small"
-                color="blue-gray"
-                className="p-1 font-normal hover:text-primary transition-all duration-300 hover:font-extrabold"
-            >
-                <a href="#" className="flex items-center">
-                    About Us
+                    Tentang Kami
                 </a>
             </Typography>
         </ul>
@@ -73,15 +63,15 @@ export default function Guest({ children, auth, title }) {
                             alt="Web Logo"
                             className="h-10 w-full md:w-auto max-w-full mr-2"
                         /> */}
-                        <ApplicationLogo className="h-12 w-10 mr-4 " />
-                        <Typography
+                        <ApplicationLogo className="h-12 w-24 mr-4 " />
+                        {/* <Typography
                             as="a"
                             href="#"
                             className="mr-4 cursor-pointer mt-1.5  text-primary font-extrabold"
                             variant="h5"
                         >
-                            PT. UNIMAS INTI JAYA
-                        </Typography>
+                            Gloria Swalayan
+                        </Typography> */}
                     </div>
 
                     <div className="relative flex flex-1 gap-2 md:w-max mobile:hidden mx-4">
@@ -114,7 +104,7 @@ export default function Guest({ children, auth, title }) {
                                     <IconButton size="lg" variant="text">
                                         <i
                                             className="fa-solid fa-cart-shopping fa-bounce fa-2xl "
-                                            style={{ color: "#00abc4" }}
+                                            style={{ color: "#ec3237" }}
                                         ></i>
                                     </IconButton>
                                 </Link>
@@ -128,7 +118,7 @@ export default function Guest({ children, auth, title }) {
                                         size="sm"
                                         className="hidden lg:inline-block"
                                     >
-                                        Log out
+                                        Keluar
                                     </Button>
                                 </Link>
                             </>
@@ -140,7 +130,7 @@ export default function Guest({ children, auth, title }) {
                                         size="sm"
                                         className="hidden lg:inline-block bg-primary"
                                     >
-                                        Login
+                                        Masuk
                                     </Button>
                                 </Link>
                                 <Link href={route("register")}>
@@ -149,7 +139,7 @@ export default function Guest({ children, auth, title }) {
                                         size="sm"
                                         className="hidden lg:inline-block border-primary text-primary"
                                     >
-                                        Sign up
+                                        Daftar
                                     </Button>
                                 </Link>
                             </>
@@ -203,7 +193,7 @@ export default function Guest({ children, auth, title }) {
                                 fullWidth
                                 className="mb-2"
                             >
-                                <span>Log Out</span>
+                                <span>Keluar</span>
                             </Button>
                         </Link>
                     ) : (
@@ -215,7 +205,7 @@ export default function Guest({ children, auth, title }) {
                                     fullWidth
                                     className="mb-2 bg-primary"
                                 >
-                                    <span>LOGIN</span>
+                                    <span>Masuk</span>
                                 </Button>
                             </Link>
                             <Link href={route("register")}>
@@ -225,7 +215,7 @@ export default function Guest({ children, auth, title }) {
                                     fullWidth
                                     className="mb-2 border-primary text-primary"
                                 >
-                                    <span>SIGN UP</span>
+                                    <span>Daftar</span>
                                 </Button>
                             </Link>
                         </>

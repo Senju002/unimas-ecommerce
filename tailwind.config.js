@@ -22,9 +22,9 @@ module.exports = withMT({
                 desktop: { min: "1280px" }, // => @media (min-width: 1280px) { ... }
             },
             colors: {
-                primary: "#00abc4", // Add your primary color
+                primary: "#ec3237", // Add your primary color
                 primaryHover: "#10DDFB",
-                secondary: "#faa61c", // Add your secondary color
+                secondary: "#3e4095", // Add your secondary color
                 textColor: "#E8E3E7",
                 bgColor: "#f5f5f5",
             },

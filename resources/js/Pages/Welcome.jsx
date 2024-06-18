@@ -12,7 +12,7 @@ import Footer from "@/Components/Footer";
 
 export default function Welcome(props) {
     return (
-        <Guest auth={props.auth.user} title={"Unimas Inti Jaya"}>
+        <Guest auth={props.auth.user} title={"Home"}>
             {/* <HomeBanner /> */}
             <div className="py-0 tablet:py-0">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
