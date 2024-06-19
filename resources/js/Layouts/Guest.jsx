@@ -8,17 +8,17 @@ import {
     Collapse,
     Input,
 } from "@material-tailwind/react";
-import React from "react";
-import {
-    FolderPlusIcon,
-    MagnifyingGlassCircleIcon,
-    MagnifyingGlassIcon,
-    PencilIcon,
-} from "@heroicons/react/24/solid";
+import React, { useState } from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import LoginModal from "@/Components/LoginModal";
+import UserIcon from "@/Components/UserIcon";
 
 export default function Guest({ children, auth, title }) {
     const [openNav, setOpenNav] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
+
     React.useEffect(() => {
         window.addEventListener(
             "resize",
@@ -55,23 +55,10 @@ export default function Guest({ children, auth, title }) {
         <>
             <Head title={title} />
 
-            <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+            <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 ">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <div className="flex flex-row items-center justify-center ">
-                        {/* <img
-                            src={WebLogo}
-                            alt="Web Logo"
-                            className="h-10 w-full md:w-auto max-w-full mr-2"
-                        /> */}
                         <ApplicationLogo className="h-12 w-24 mr-4 " />
-                        {/* <Typography
-                            as="a"
-                            href="#"
-                            className="mr-4 cursor-pointer mt-1.5  text-primary font-extrabold"
-                            variant="h5"
-                        >
-                            Gloria Swalayan
-                        </Typography> */}
                     </div>
 
                     <div className="relative flex flex-1 gap-2 md:w-max mobile:hidden mx-4">
@@ -113,35 +100,28 @@ export default function Guest({ children, auth, title }) {
                                     method="post"
                                     as="button"
                                 >
-                                    <Button
+                                    {/* <Button
                                         variant="text"
                                         size="sm"
                                         className="hidden lg:inline-block"
                                     >
                                         Keluar
-                                    </Button>
+                                    </Button> */}
+                                    <UserIcon
+                                        photoProfile={auth.photo_profile}
+                                    />
                                 </Link>
                             </>
                         ) : (
                             <>
-                                <Link href={route("login")}>
-                                    <Button
-                                        variant="filled"
-                                        size="sm"
-                                        className="hidden lg:inline-block bg-primary"
-                                    >
-                                        Masuk
-                                    </Button>
-                                </Link>
-                                <Link href={route("register")}>
-                                    <Button
-                                        variant="outlined"
-                                        size="sm"
-                                        className="hidden lg:inline-block border-primary text-primary"
-                                    >
-                                        Daftar
-                                    </Button>
-                                </Link>
+                                <Button
+                                    variant="filled"
+                                    size="sm"
+                                    className="hidden lg:inline-block bg-primary"
+                                    onClick={handleOpen}
+                                >
+                                    Masuk
+                                </Button>
                             </>
                         )}
                         <IconButton
@@ -198,32 +178,22 @@ export default function Guest({ children, auth, title }) {
                         </Link>
                     ) : (
                         <>
-                            <Link href={route("login")}>
-                                <Button
-                                    variant="filled"
-                                    size="sm"
-                                    fullWidth
-                                    className="mb-2 bg-primary"
-                                >
-                                    <span>Masuk</span>
-                                </Button>
-                            </Link>
-                            <Link href={route("register")}>
-                                <Button
-                                    variant="outlined"
-                                    size="sm"
-                                    fullWidth
-                                    className="mb-2 border-primary text-primary"
-                                >
-                                    <span>Daftar</span>
-                                </Button>
-                            </Link>
+                            <Button
+                                variant="filled"
+                                size="sm"
+                                fullWidth
+                                className="mb-2 bg-primary"
+                                onClick={handleOpen}
+                            >
+                                <span>Masuk</span>
+                            </Button>
                         </>
                     )}
                 </Collapse>
             </Navbar>
             {/* <div className="mx-auto max-w-screen-md py-12">{children}</div> */}
             <div className=" py-0 bg-bgColor h-full">{children}</div>
+            <LoginModal handleOpen={handleOpen} open={open} />
         </>
     );
 }

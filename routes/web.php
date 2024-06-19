@@ -16,6 +16,10 @@ use Inertia\Inertia;
 |
 */
 
+Route::fallback(function () {
+    return Inertia::render('NotFoundPage');
+});
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
