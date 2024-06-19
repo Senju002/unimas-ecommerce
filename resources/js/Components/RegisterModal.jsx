@@ -27,8 +27,12 @@ export default function RegisterModal({ setOpenRegister, openRegister }) {
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route("register"));
+        post(route("register"), {
+            onSuccess: () => {
+                setOpenRegister();
+                // You can perform additional actions after successful register if needed
+            },
+        });
     };
 
     return (

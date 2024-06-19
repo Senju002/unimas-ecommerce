@@ -32,7 +32,7 @@ export default function LoginModal({ open, handleOpen }) {
 
         post(route("login"), {
             onSuccess: () => {
-                // handleOpen();
+                handleOpen();
                 // You can perform additional actions after successful login if needed
             },
         });

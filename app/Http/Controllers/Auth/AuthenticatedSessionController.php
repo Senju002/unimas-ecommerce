@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,7 +35,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Get the email from the request
+        $email = $request->email;
+
+        // Query the user to get the role
+        $user = User::where('email', $email)->first();
+
+        // Check the role and redirect accordingly
+        if ($user->role === 'ADMIN') {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
