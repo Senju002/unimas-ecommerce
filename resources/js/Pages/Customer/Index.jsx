@@ -4,14 +4,22 @@ import { useState, useEffect } from "react";
 import { router, usePage } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, IconButton, Input, Tooltip } from "@material-tailwind/react";
+import {
+    Breadcrumbs,
+    Button,
+    IconButton,
+    Input,
+    Tooltip,
+} from "@material-tailwind/react";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import AddDataButton from "@/Components/AddDataButton";
 import SearchButton from "@/Components/SearchButton";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import SearchInput from "@/Components/SearchInput";
+import Pagination from "@/Components/Pagination";
+import PageHeader from "@/Components/PageHeader";
 
-export default function CoordinatorList(props) {
+export default function Index(props) {
     const [search, setSearch] = useState("");
     const [searchBy, setSearchBy] = useState("name");
 
@@ -50,8 +58,27 @@ export default function CoordinatorList(props) {
 
             <div className="py-12">
                 <div className=" mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-foreground overflow-hidden  sm:rounded-lg shadow-[0_1px_100px_#3e4095]">
+                    <Breadcrumbs className="ml-[-0.9rem] w-96 bg-transparent">
+                        <Link
+                            href={route("dashboard")}
+                            className=" text-secondary opacity-80 "
+                        >
+                            Dashboard
+                        </Link>
+                        <Link
+                            href={route("customer.index")}
+                            className="opacity-100 text-secondary font-extrabold "
+                        >
+                            Customer Data
+                        </Link>
+                        <a href="#"></a>
+                    </Breadcrumbs>
+                    <div className="bg-white dark:bg-foreground overflow-hidden  sm:rounded-lg shadow-[0_10px_90px_#6F72FF]">
                         <div className="p-6 text-textprimary dark:text-gray-200">
+                            <PageHeader
+                                description="Informasi Data Customer Gloria Swalayan"
+                                title="Customer Data"
+                            />
                             <div className="flex flex-col">
                                 <div className="overflow-x-auto">
                                     <div className="flex justify-between py-3 pl-2">
@@ -298,6 +325,10 @@ export default function CoordinatorList(props) {
                                             </button>
                                         )}
                                     </div>
+                                    {/* <Pagination
+                                        data={props.data}
+                                        extraData={{ search, searchBy }}
+                                    /> */}
                                 </div>
                             </div>
                         </div>
