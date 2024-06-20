@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -38,5 +40,35 @@ class CustomerController extends Controller
             'search' => $query,
             'searchBy' => $searchBy
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        // Validate the incoming data
+
+        // dd($request);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:100',
+            'phone_number' => 'required|string|regex:/^[0-9]{10,15}$/',
+            'email' => 'required|email|max:255|unique:users,email',
+            'gender' => 'required|in:Pria,Wanita',
+            'date_of_birth' => 'required|date',
+            'address' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+            'urban_village' => 'required|string|max:255',
+            'sub_district' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'zipcode' => 'required|string|max:10',
+        ]);
+
+
+        $validatedData['email_verified_at'] = Carbon::today();
+        $validatedData['role'] = 'USER';
+        $validatedData['password'] = Hash::make('Password123');
+
+        // Store the validated data in the apartments table
+        $user = User::create($validatedData);
+
+        return redirect('/customer')->with('success', 'Data Customer Baru Berhasil Dibuat!');
     }
 }

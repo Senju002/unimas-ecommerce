@@ -4,26 +4,18 @@ import { useState, useEffect } from "react";
 import { router, usePage } from "@inertiajs/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-    Breadcrumbs,
-    Button,
-    IconButton,
-    Input,
-    Tooltip,
-} from "@material-tailwind/react";
+import { Breadcrumbs, IconButton, Tooltip } from "@material-tailwind/react";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import AddDataButton from "@/Components/AddDataButton";
 import SearchButton from "@/Components/SearchButton";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import SearchInput from "@/Components/SearchInput";
-import Pagination from "@/Components/Pagination";
 import PageHeader from "@/Components/PageHeader";
 
 export default function Index(props) {
     const [search, setSearch] = useState("");
     const [searchBy, setSearchBy] = useState("name");
-
     const [data, setData] = useState(props.data.data);
+    const { flash } = usePage().props;
 
     useEffect(() => {
         setData(props.data.data);
@@ -43,6 +35,12 @@ export default function Index(props) {
         });
         // console.warn(formData);
     };
+
+    useEffect(() => {
+        if (flash.message) {
+            toast.success(flash.message);
+        }
+    }, [flash.message]);
 
     return (
         <AuthenticatedLayout

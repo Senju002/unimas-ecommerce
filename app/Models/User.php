@@ -31,6 +31,7 @@ class User extends Authenticatable
         'sub_district',
         'city',
         'zipcode',
+        'email_verified_at',
 
     ];
 
