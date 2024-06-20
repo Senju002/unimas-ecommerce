@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,19 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'role:ADMIN'])->name('dashboard');
+
+
+Route::middleware(['auth', 'verified', 'role:ADMIN'])->group(function () {
+    // !Customer
+    Route::get('/customer', [CustomerController::class, "index"])->name('customer.index');
+    Route::get('/customer/add', function () {
+        return Inertia::render('Customer/Store');
+    })->name('customer.add');
+    Route::post('/customer/store', [CustomerController::class, 'store'])->name('customer.store');
+    Route::get('/customer/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/customer/{id}/update', [CustomerController::class, 'update'])->name('customer.update');
+    Route::post('/customer/delete', [CustomerController::class, 'destroy'])->name('customer.delete');
+});
 
 
 

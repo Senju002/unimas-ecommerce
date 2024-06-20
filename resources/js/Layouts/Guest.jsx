@@ -64,7 +64,7 @@ export default function Guest({ children, auth, title }) {
                     <div className="relative flex flex-1 gap-2 md:w-max mobile:hidden mx-4">
                         <Input
                             type="search"
-                            placeholder="Cari Produk..."
+                            label="Cari Produk..."
                             className=" !border-primary pl-9 placeholder:text-blue-gray-300 focus:!border-primary w-full"
                             labelProps={{
                                 className:

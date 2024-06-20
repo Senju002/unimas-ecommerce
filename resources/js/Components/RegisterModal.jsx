@@ -70,6 +70,7 @@ export default function RegisterModal({ setOpenRegister, openRegister }) {
                             value={data.name}
                             onChange={(e) => setData("name", e.target.value)}
                             required
+                            error={errors.name}
                         />
                         <Typography className="-mb-2 " variant="h6">
                             Email
@@ -83,6 +84,7 @@ export default function RegisterModal({ setOpenRegister, openRegister }) {
                             value={data.email}
                             onChange={(e) => setData("email", e.target.value)}
                             required
+                            error={errors.email}
                         />
                         <InputError message={errors.email} className="" />
                         <Typography className="-mb-2 mt-2 " variant="h6">
@@ -100,6 +102,7 @@ export default function RegisterModal({ setOpenRegister, openRegister }) {
                             onChange={(e) =>
                                 setData("password", e.target.value)
                             }
+                            error={errors.password}
                         />
                         <InputError message={errors.password} className="" />
                         <Typography className="-mb-2 mt-2 " variant="h6">
@@ -117,6 +120,7 @@ export default function RegisterModal({ setOpenRegister, openRegister }) {
                             onChange={(e) =>
                                 setData("password_confirmation", e.target.value)
                             }
+                            error={errors.password_confirmation}
                         />
                         <InputError
                             message={errors.password_confirmation}

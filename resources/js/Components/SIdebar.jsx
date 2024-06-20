@@ -120,7 +120,7 @@ export default function Sidebar({ user, classname }) {
                     </AccordionBody>
                 </Accordion>
 
-                <Link href={route("dashboard")}>
+                <Link href={route("customer.index")}>
                     <ListItem className="hover:text-secondary text-textColor ">
                         <ListItemPrefix>
                             <UsersIcon className="h-5 w-5" />

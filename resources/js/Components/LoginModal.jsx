@@ -75,6 +75,7 @@ export default function LoginModal({ open, handleOpen }) {
                                     setData("email", e.target.value)
                                 }
                                 required
+                                error={errors.email}
                             />
                             <Typography className="-mb-2 mt-2 " variant="h6">
                                 Password
@@ -89,6 +90,7 @@ export default function LoginModal({ open, handleOpen }) {
                                 onChange={(e) =>
                                     setData("password", e.target.value)
                                 }
+                                error={errors.password}
                             />
                             <InputError message={errors.email} className="" />
                         </CardBody>
