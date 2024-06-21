@@ -4,13 +4,11 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import {
     Breadcrumbs,
     Button,
-    Input,
     Option,
     Select,
     Typography,
 } from "@material-tailwind/react";
 import PageHeader from "@/Components/PageHeader";
-import InputError from "@/Components/InputError";
 import CustomInput from "@/Components/CustomInput";
 
 export default function Store({ auth }) {
@@ -53,11 +51,11 @@ export default function Store({ auth }) {
             errors={errors}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    Customer Data
+                    Tambah Customer Data
                 </h2>
             }
         >
-            <Head title="Customer Data" />
+            <Head title="Tambah Customer Data" />
 
             <div className="py-12">
                 <div className=" mx-auto sm:px-6 lg:px-8">

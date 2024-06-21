@@ -193,7 +193,7 @@ export default function Index(props) {
                                                                         as="button"
                                                                     >
                                                                         <Tooltip
-                                                                            content="Edit AKun Koordinator"
+                                                                            content="Edit Data Customer"
                                                                             animate={{
                                                                                 mount: {
                                                                                     scale: 1,
