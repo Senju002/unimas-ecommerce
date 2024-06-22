@@ -107,6 +107,6 @@ class CustomerController extends Controller
 
         $customer->update($validatedData);
 
-        return redirect('/customer')->with('success', 'Data Customer Baru Berhasil Di Update!!');
+        return redirect('/customer')->with('success', 'Data Customer Berhasil Di Update!!');
     }
 }

@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified', 'role:ADMIN'])->group(function () {
     Route::get('/product-category', [ProductCategoryController::class, "index"])->name('productCategory.index');
     Route::get('/product-category/add', function () {
         return Inertia::render('Product Category/Store');
-    })->name('product-category.add');
+    })->name('productCategory.add');
     Route::post('/product-category/store', [ProductCategoryController::class, 'store'])->name('productCategory.store');
     Route::get('/product-category/{id}/edit', [ProductCategoryController::class, 'edit'])->name('productCategory.edit');
     Route::post('/product-category/{id}/update', [ProductCategoryController::class, 'update'])->name('productCategory.update');

@@ -169,7 +169,7 @@ export default function Sidebar({ user, classname }) {
                                     Data Produk
                                 </ListItem>
                             </Link>
-                            <Link href={route("dashboard")}>
+                            <Link href={route("productCategory.index")}>
                                 <ListItem className="hover:text-secondary ">
                                     <ListItemPrefix>
                                         <ChevronRightIcon
