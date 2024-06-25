@@ -59,7 +59,7 @@ export default function Edit(props) {
 
                         <div className="py-12">
                             <div className=" mx-auto sm:px-6 lg:px-8">
-                                <Breadcrumbs className="ml-[-0.9rem] w-[26rem] bg-transparent">
+                                {/* <Breadcrumbs className="ml-[-0.9rem] w-[26rem] bg-transparent">
                                     <Link
                                         href="/"
                                         className=" text-primary opacity-80 "
@@ -76,7 +76,7 @@ export default function Edit(props) {
                                         User's Profile
                                     </Link>
                                     <a href="#"></a>
-                                </Breadcrumbs>
+                                </Breadcrumbs> */}
                                 <div className="bg-white dark:bg-foreground overflow-hidden  sm:rounded-lg shadow-xl ">
                                     <div className="p-6 text-textprimary dark:text-gray-200">
                                         <PageHeader

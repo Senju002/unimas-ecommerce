@@ -8,6 +8,17 @@ use Inertia\Inertia;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+
+        $contactUsData = ContactUs::first();
+
+        return Inertia::render("Contact Us/Index", [
+            "contactUsData" => $contactUsData
+        ]);
+    }
+
+
     public function edit(ContactUs $contactUs, Request $request)
     {
         return Inertia::render("Contact Us/Edit", [

@@ -34,9 +34,12 @@ export default function Guest({ children, auth, title }) {
                 color="blue-gray"
                 className="p-1 font-normal hover:text-primary transition-all duration-300 hover:font-extrabold"
             >
-                <a href="#" className="flex items-center">
+                <Link
+                    href={route("contact.index")}
+                    className="flex items-center"
+                >
                     Hubungi Kami
-                </a>
+                </Link>
             </Typography>
             <Typography
                 as="li"
