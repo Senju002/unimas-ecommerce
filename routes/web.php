@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,16 @@ Route::middleware(['auth', 'verified', 'role:ADMIN'])->group(function () {
     Route::get('/product-category/{id}/edit', [ProductCategoryController::class, 'edit'])->name('productCategory.edit');
     Route::post('/product-category/{id}/update', [ProductCategoryController::class, 'update'])->name('productCategory.update');
     Route::post('/product-category/delete', [ProductCategoryController::class, 'destroy'])->name('productCategory.delete');
+
+    // !Product Category
+    Route::get('/product', [ProductController::class, "index"])->name('product.index');
+    Route::get('/product/add', function () {
+        return Inertia::render('Product/Store');
+    })->name('product.add');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/product/{id}/update', [ProductController::class, 'update'])->name('product.update');
+    Route::post('/product/delete', [ProductController::class, 'destroy'])->name('product.delete');
 });
 
 

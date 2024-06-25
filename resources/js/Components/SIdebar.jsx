@@ -158,7 +158,7 @@ export default function Sidebar({ user, classname }) {
                     </ListItem>
                     <AccordionBody className="py-1 ">
                         <List className="p-0 text-textColor ">
-                            <Link href={route("dashboard")}>
+                            <Link href={route("product.index")}>
                                 <ListItem className="hover:text-secondary ">
                                     <ListItemPrefix>
                                         <ChevronRightIcon
