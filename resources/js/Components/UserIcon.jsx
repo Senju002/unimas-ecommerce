@@ -31,7 +31,7 @@ export default function UserIcon({ photoProfile }) {
                 />
             </MenuHandler>
             <MenuList className="bg-white text-text_color border-none font-bold">
-                <Link href={route("profile.edit")} method="get">
+                <Link href={route("userProfile.edit")} method="get">
                     <MenuItem className="flex items-center gap-2 hover:bg-secondaryColor hover:text-primary">
                         {/* <HiOutlineUserCircle
                             size={25}

@@ -173,6 +173,6 @@ class ProductController extends Controller
         $product->update($validatedData);
 
         // Redirect or return a response
-        return redirect()->route('product.index')->with('success', 'Data Produk Baru Berhasil Di Edit.');
+        return redirect()->route('product.index')->with('success', 'Data Produk Berhasil Di Edit.');
     }
 }

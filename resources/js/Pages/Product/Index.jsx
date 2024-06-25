@@ -205,7 +205,7 @@ export default function Index(props) {
                                                                         as="button"
                                                                     >
                                                                         <Tooltip
-                                                                            content="Edit Data kategori Produk"
+                                                                            content="Edit Data Produk"
                                                                             animate={{
                                                                                 mount: {
                                                                                     scale: 1,

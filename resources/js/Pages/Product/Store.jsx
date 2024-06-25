@@ -49,8 +49,6 @@ export default function Store({ auth, productCategoryList }) {
         }));
     };
 
-    console.log(productCategoryList);
-
     // ! Handle submit
     function handleSubmit(e) {
         e.preventDefault();

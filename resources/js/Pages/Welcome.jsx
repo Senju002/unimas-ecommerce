@@ -1,16 +1,23 @@
-import { Link, Head } from "@inertiajs/react";
-import React from "react";
+import React, { useEffect } from "react";
 import Guest from "@/Layouts/Guest";
 import { Typography } from "@material-tailwind/react";
 
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CustomCarousel from "@/Components/CustomCarousel";
 import ProductCard from "@/Components/ProductCard";
 import ProductCarousel from "@/Components/ProductCarousel";
 import Footer from "@/Components/Footer";
+import { usePage } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Welcome(props) {
+    const { flash } = usePage().props;
+    useEffect(() => {
+        if (flash.message) {
+            toast.success(flash.message);
+        }
+    }, [flash.message]);
     return (
         <Guest auth={props.auth.user} title={"Home"}>
             {/* <HomeBanner /> */}
@@ -111,6 +118,7 @@ export default function Welcome(props) {
             </div>
             {/* Footer */}
             <Footer />
+            <ToastContainer />
         </Guest>
     );
 }
