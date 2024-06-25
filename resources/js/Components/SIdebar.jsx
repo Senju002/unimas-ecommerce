@@ -225,7 +225,11 @@ export default function Sidebar({ user, classname }) {
                                 </ListItem>
                             </Link>
 
-                            <Link href={route("dashboard")}>
+                            <Link
+                                href={route("contact.edit", {
+                                    id: 1,
+                                })}
+                            >
                                 <ListItem className="hover:text-secondary ">
                                     <ListItemPrefix>
                                         <ChevronRightIcon
@@ -236,7 +240,11 @@ export default function Sidebar({ user, classname }) {
                                     Data Hubungi Kami
                                 </ListItem>
                             </Link>
-                            <Link href={route("dashboard")}>
+                            <Link
+                                href={route("contact.edit", {
+                                    id: 1,
+                                })}
+                            >
                                 <ListItem className="hover:text-secondary ">
                                     <ListItemPrefix>
                                         <ChevronRightIcon

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
@@ -66,7 +67,15 @@ Route::middleware(['auth', 'verified', 'role:ADMIN'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // !Contact Us
+    Route::get('/contact-us/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');
+    Route::post('/contact-us/{id}/update', [ContactController::class, 'update'])->name('contact.update');
 });
+
+
+// ? GUEST ACCOUNT
+Route::get('/contact-us', [ContactController::class, "index"])->name('contact.index');
 
 
 

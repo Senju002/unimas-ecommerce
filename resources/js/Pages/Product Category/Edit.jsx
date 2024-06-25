@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Head, Link, useForm } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {
-    Breadcrumbs,
-    Button,
-    Option,
-    Select,
-    Typography,
-} from "@material-tailwind/react";
+import { Breadcrumbs, Button } from "@material-tailwind/react";
 import PageHeader from "@/Components/PageHeader";
 import CustomInput from "@/Components/CustomInput";
 
