@@ -64,7 +64,7 @@ export default function Index(props) {
                             Dashboard
                         </Link>
                         <Link
-                            href={route("productCategory.index")}
+                            href={route("product.index")}
                             className="opacity-100 text-secondary font-extrabold "
                         >
                             Data Produk
@@ -96,7 +96,7 @@ export default function Index(props) {
                                                 <SearchButton />
 
                                                 <AddDataButton
-                                                    link="productCategory.add"
+                                                    link="product.add"
                                                     title="Tambah Produk"
                                                 />
                                             </div>
@@ -193,7 +193,7 @@ export default function Index(props) {
                                                                     <Link
                                                                         className="text-green-500 hover:text-green-700"
                                                                         href={route(
-                                                                            "productCategory.edit",
+                                                                            "product.edit",
                                                                             {
                                                                                 id: data.id,
                                                                             }
