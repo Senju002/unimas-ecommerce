@@ -43,6 +43,7 @@ export default function Welcome(props) {
                                 {weeklyProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        id={product.id}
                                         image={product.image}
                                         name={product.product_name}
                                         price={parseFloat(
@@ -68,6 +69,7 @@ export default function Welcome(props) {
                                 {bestProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        id={product.id}
                                         image={product.image}
                                         name={product.product_name}
                                         price={parseFloat(
@@ -93,6 +95,7 @@ export default function Welcome(props) {
                                 {recentProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        id={product.id}
                                         image={product.image}
                                         name={product.product_name}
                                         price={parseFloat(
@@ -118,6 +121,7 @@ export default function Welcome(props) {
                                 {randomProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        id={product.id}
                                         image={product.image}
                                         name={product.product_name}
                                         price={parseFloat(

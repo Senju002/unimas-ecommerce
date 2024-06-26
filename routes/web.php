@@ -50,7 +50,7 @@ Route::middleware(['auth', 'verified', 'role:ADMIN'])->group(function () {
     Route::post('/product-category/{id}/update', [ProductCategoryController::class, 'update'])->name('productCategory.update');
     Route::post('/product-category/delete', [ProductCategoryController::class, 'destroy'])->name('productCategory.delete');
 
-    // !Product Category
+    // !Product
     Route::get('/product', [ProductController::class, "index"])->name('product.index');
     Route::get('/product/add', [ProductController::class, 'add'])->name('product.add');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
@@ -78,11 +78,8 @@ Route::fallback(function () {
 });
 
 // ! HomePage
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', []);
-// });
-
 Route::get('/', [HomeController::class, "index"])->name('home.index');
+Route::get('/product/{id}/view', [ProductController::class, 'view'])->name('product.view');
 
 
 

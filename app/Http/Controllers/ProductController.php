@@ -175,4 +175,22 @@ class ProductController extends Controller
         // Redirect or return a response
         return redirect()->route('product.index')->with('success', 'Data Produk Berhasil Di Edit.');
     }
+    public function view($id)
+    {
+        $productData = Product::findOrFail($id); // Assuming ID is primary key and exists
+        $image = $productData->image;
+        $imageUrl = asset($image);
+
+        $recentProduct = Product::orderBy('id', 'desc')->take(10)->get()->map(function ($product) {
+            $product->image_url = asset($product->image);
+            return $product;
+        });
+
+
+
+        return Inertia::render('Product/View', [
+            'productData' => array_merge($productData->toArray(), ['image_url' => $imageUrl]),
+            "recentProduct" => $recentProduct,
+        ]);
+    }
 }
