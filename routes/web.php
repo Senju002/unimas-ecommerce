@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -21,13 +22,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::fallback(function () {
-    return Inertia::render('NotFoundPage');
-});
-
-Route::get('/', function () {
-    return Inertia::render('Welcome', []);
-});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -75,7 +69,20 @@ Route::middleware(['auth', 'verified', 'role:ADMIN'])->group(function () {
 
 
 // ? GUEST ACCOUNT
+// !Contact Us
 Route::get('/contact-us', [ContactController::class, "index"])->name('contact.index');
+
+// ! Not Found 
+Route::fallback(function () {
+    return Inertia::render('NotFoundPage');
+});
+
+// ! HomePage
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', []);
+// });
+
+Route::get('/', [HomeController::class, "index"])->name('home.index');
 
 
 

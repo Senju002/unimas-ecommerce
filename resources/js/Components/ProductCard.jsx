@@ -8,12 +8,12 @@ import {
     Button,
 } from "@material-tailwind/react";
 
-export default function ProductCard({ name, price, isDiscount }) {
+export default function ProductCard({ name, price, isDiscount, image }) {
     return (
         <Card className="w-48 tablet:h-80 h-96 mx-2 transform  shadow-none duration-100 hover:border-primary hover:border-2 transition-all">
             <CardHeader shadow={false} floated={false} className="h-96">
                 <img
-                    src="https://assets.klikindomaret.com/products/10008819/10008819_thumb.jpg?Version.20.01.1.01"
+                    src={image}
                     alt="card-image"
                     className="h-full w-full object-contain"
                 />

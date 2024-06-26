@@ -61,7 +61,9 @@ export default function Guest({ children, auth, title }) {
             <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 ">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <div className="flex flex-row items-center justify-center ">
-                        <ApplicationLogo className="h-12 w-24 mr-4 " />
+                        <Link href="/">
+                            <ApplicationLogo className="h-12 w-24 mr-4 " />
+                        </Link>
                     </div>
 
                     <div className="relative flex flex-1 gap-2 md:w-max mobile:hidden mx-4">

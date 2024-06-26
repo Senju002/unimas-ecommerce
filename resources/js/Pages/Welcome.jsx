@@ -12,12 +12,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Welcome(props) {
-    const { flash } = usePage().props;
+    const { flash, weeklyProduct, bestProduct, recentProduct, randomProduct } =
+        usePage().props;
     useEffect(() => {
         if (flash.message) {
             toast.success(flash.message);
         }
     }, [flash.message]);
+
     return (
         <Guest auth={props.auth.user} title={"Home"}>
             {/* <HomeBanner /> */}
@@ -38,11 +40,14 @@ export default function Welcome(props) {
                                 </Typography>
                             </div>
                             <ProductCarousel>
-                                {Array.from({ length: 10 }).map((_, index) => (
+                                {weeklyProduct.map((product) => (
                                     <ProductCard
-                                        key={index}
-                                        name="Kecap Manis Ba.."
-                                        price={120000}
+                                        key={product.id}
+                                        image={product.image}
+                                        name={product.product_name}
+                                        price={parseFloat(
+                                            product.price
+                                        ).toFixed(2)} // Ensure price is formatted as needed
                                     />
                                 ))}
                             </ProductCarousel>
@@ -60,11 +65,14 @@ export default function Welcome(props) {
                                 </Typography>
                             </div>
                             <ProductCarousel>
-                                {Array.from({ length: 10 }).map((_, index) => (
+                                {bestProduct.map((product) => (
                                     <ProductCard
-                                        key={index}
-                                        name="Kecap Manis Ba.."
-                                        price={120000}
+                                        key={product.id}
+                                        image={product.image}
+                                        name={product.product_name}
+                                        price={parseFloat(
+                                            product.price
+                                        ).toFixed(2)} // Ensure price is formatted as needed
                                     />
                                 ))}
                             </ProductCarousel>
@@ -82,11 +90,14 @@ export default function Welcome(props) {
                                 </Typography>
                             </div>
                             <ProductCarousel>
-                                {Array.from({ length: 10 }).map((_, index) => (
+                                {recentProduct.map((product) => (
                                     <ProductCard
-                                        key={index}
-                                        name="Kecap Manis Ba.."
-                                        price={120000}
+                                        key={product.id}
+                                        image={product.image}
+                                        name={product.product_name}
+                                        price={parseFloat(
+                                            product.price
+                                        ).toFixed(2)} // Ensure price is formatted as needed
                                     />
                                 ))}
                             </ProductCarousel>
@@ -104,11 +115,14 @@ export default function Welcome(props) {
                                 </Typography>
                             </div>
                             <ProductCarousel>
-                                {Array.from({ length: 10 }).map((_, index) => (
+                                {randomProduct.map((product) => (
                                     <ProductCard
-                                        key={index}
-                                        name="Kecap Manis Ba.."
-                                        price={120000}
+                                        key={product.id}
+                                        image={product.image}
+                                        name={product.product_name}
+                                        price={parseFloat(
+                                            product.price
+                                        ).toFixed(2)} // Ensure price is formatted as needed
                                     />
                                 ))}
                             </ProductCarousel>
