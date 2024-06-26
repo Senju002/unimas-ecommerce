@@ -73,10 +73,10 @@ export default function Guest({ children, auth, title }) {
                             className=" !border-primary pl-9 placeholder:text-blue-gray-300 focus:!border-primary w-full"
                             labelProps={{
                                 className:
-                                    "before:content-none after:content-none",
+                                    "before:content-none after:content-none pl-8",
                             }}
                         />
-                        <div className="!absolute left-3 top-[13px]">
+                        <div className="!absolute left-3 top-[11px]">
                             <MagnifyingGlassIcon className="h-4 w-4 text-primary" />
                         </div>
                         <Button

@@ -43,24 +43,24 @@ export default function View(props) {
                                 <img
                                     src={productData.image_url}
                                     alt={productData.product_name}
-                                    className="object-cover w-80 h-full  rounded-lg  "
+                                    className="object-cover w-80 h-full mobile:w-48  rounded-lg  "
                                 />
-                                <div className="flex flex-col w-96 h-80 max-w-96 overflow-x-auto max-h-80 scrollbar  ">
+                                <div className="flex flex-col w-96 h-80 max-w-96 overflow-x-auto max-h-80 scrollbar mobile:h-72 mobile:max-h-72 mobile:max-w-full mobile:w-full  ">
                                     {" "}
-                                    <Typography className="text-4xl font-bold">
+                                    <Typography className="text-4xl font-bold mobile:text-2xl">
                                         {productData.product_name}
                                     </Typography>
-                                    <Typography className="text-3xl font-bold mt-2">
+                                    <Typography className="text-3xl font-bold mt-2 mobile:text-2xl">
                                         {formattedPrice}
                                     </Typography>
-                                    <Typography className="text-lg font-regular mt-8 text-justify">
+                                    <Typography className="text-lg font-regular mt-8 mobile:mt-4 text-justify mobile:text-base ">
                                         {productData.description}
                                     </Typography>
                                 </div>
 
-                                <div className="flex flex-col max-w-96 max-h-80 w-96 h-80   ">
+                                <div className="flex flex-col max-w-96 max-h-80 w-96 h-80 mobile:max-w-full mobile:w-full  ">
                                     <div className="flex flex-row items-center justify-between mx-4">
-                                        <div className="flex items-center justify-between space-x-2 border-2 border-primary rounded-lg w-48">
+                                        <div className="flex items-center justify-between space-x-2 border-2 border-primary rounded-lg w-48 mobile:w-32">
                                             <Button
                                                 onClick={decrementCounter}
                                                 className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
@@ -77,7 +77,7 @@ export default function View(props) {
                                                 +
                                             </Button>
                                         </div>
-                                        <Typography className="text-lg font-semibold text-justify">
+                                        <Typography className="text-lg font-semibold text-justify mobile:text-base">
                                             Total Stock :{" "}
                                             <span className="text-primary font-extrabold">
                                                 {productData.quantity}
@@ -90,7 +90,10 @@ export default function View(props) {
                                             {TotalformattedPrice}
                                         </Typography>
                                     </div>
-                                    <Link href="#" className="mt-24">
+                                    <Link
+                                        href="#"
+                                        className="mt-24 tablet:mt-10"
+                                    >
                                         <Button
                                             variant="outlined"
                                             ripple={true}
