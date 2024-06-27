@@ -15,6 +15,10 @@ class CartController extends Controller
         /** @var \App\Models\User $user **/
         $user = Auth::user();
         $cartItems = $user->cart()->with('product')->get();
+        $cartItems->transform(function ($cartItem) {
+            $cartItem->product->image_url = asset($cartItem->product->image);
+            return $cartItem;
+        });
 
         return Inertia::render('Cart/Index', [
             'cartItems' => $cartItems,

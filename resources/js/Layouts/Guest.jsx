@@ -111,7 +111,7 @@ export default function Guest({ children, auth, title, showSearch = true }) {
                         <div className="mr-4 hidden lg:block">{navList}</div>
                         {auth ? (
                             <>
-                                <Link href={route("login")}>
+                                <Link href={route("cart.index")}>
                                     <IconButton size="lg" variant="text">
                                         <i
                                             className="fa-solid fa-cart-shopping fa-bounce fa-2xl "
