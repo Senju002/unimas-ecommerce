@@ -20,6 +20,8 @@ export default function Welcome(props) {
         }
     }, [flash.message]);
 
+    const user = props.auth.user;
+
     return (
         <Guest auth={props.auth.user} title={"Home"}>
             {/* <HomeBanner /> */}
@@ -43,6 +45,7 @@ export default function Welcome(props) {
                                 {weeklyProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        user={user}
                                         id={product.id}
                                         image={product.image}
                                         name={product.product_name}
@@ -69,6 +72,7 @@ export default function Welcome(props) {
                                 {bestProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        user={user}
                                         id={product.id}
                                         image={product.image}
                                         name={product.product_name}
@@ -95,6 +99,7 @@ export default function Welcome(props) {
                                 {recentProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        user={user}
                                         id={product.id}
                                         image={product.image}
                                         name={product.product_name}
@@ -121,6 +126,7 @@ export default function Welcome(props) {
                                 {randomProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        user={user}
                                         id={product.id}
                                         image={product.image}
                                         name={product.product_name}

@@ -38,6 +38,8 @@ export default function Search(props) {
         });
     };
 
+    const user = props.auth.user;
+
     return (
         <Guest auth={props.auth.user} title={"Cari Produk"} showSearch={false}>
             {/* <HomeBanner /> */}
@@ -107,6 +109,7 @@ export default function Search(props) {
                                         <SearchProductCard
                                             key={product.id}
                                             id={product.id}
+                                            user={user}
                                             image={product.image_url}
                                             name={product.product_name}
                                             price={parseFloat(
