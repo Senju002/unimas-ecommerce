@@ -6,8 +6,9 @@ import {
     CardFooter,
     Typography,
     Button,
+    Spinner,
 } from "@material-tailwind/react";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import LoginModal from "./LoginModal";
 
 export default function ProductCard({
@@ -23,12 +24,24 @@ export default function ProductCard({
         currency: "IDR",
     }).format(price);
 
+    const [loading, setLoading] = useState(false); // Add loading state
+
     const handleClick = (e) => {
         e.preventDefault(); // Prevent the default link behavior
+        setLoading(true); // Start loading
         if (user) {
-            console.log(name);
+            setTimeout(() => {
+                router.post(route("cart.add"), {
+                    user_id: user.id,
+                    product_id: id,
+                    quantity: 1,
+                });
+
+                setLoading(false);
+            }, 2000);
         } else {
             handleOpen();
+            setLoading(false);
         }
     };
 
@@ -79,8 +92,10 @@ export default function ProductCard({
                             className="text-primary border-primary shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100  "
                             onClick={handleClick}
                             prevent
+                            disabled={loading}
+                            loading={loading}
                         >
-                            + Keranjang
+                            {loading ? "Keranjang" : "+ Keranjang"}
                         </Button>
                     </CardFooter>
                 </Card>

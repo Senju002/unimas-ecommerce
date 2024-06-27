@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
@@ -85,9 +86,16 @@ Route::get('/product/search', [ProductController::class, "search"])->name('produ
 
 
 Route::middleware('auth', 'role:USER')->group(function () {
+    // !User Profile
     Route::get('/user-profile', [UserProfileController::class, 'edit'])->name('userProfile.edit');
     Route::patch('/user-profile', [UserProfileController::class, 'update'])->name('userProfile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // !Cart Logic
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update/{cart}', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/remove/{cart}', [CartController::class, 'remove'])->name('cart.remove');
 });
 
 require __DIR__ . '/auth.php';

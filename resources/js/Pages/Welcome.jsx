@@ -14,11 +14,16 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Welcome(props) {
     const { flash, weeklyProduct, bestProduct, recentProduct, randomProduct } =
         usePage().props;
-    useEffect(() => {
-        if (flash.message) {
-            toast.success(flash.message);
-        }
-    }, [flash.message]);
+
+    // useEffect(() => {
+    //     if (flash.message) {
+    //         toast.success(flash.message);
+    //     }
+    // }, [flash.message]);
+
+    if (flash.message) {
+        toast.success(flash.message);
+    }
 
     const user = props.auth.user;
 
