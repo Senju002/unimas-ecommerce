@@ -80,6 +80,7 @@ Route::fallback(function () {
 // ! HomePage
 Route::get('/', [HomeController::class, "index"])->name('home.index');
 Route::get('/product/{id}/view', [ProductController::class, 'view'])->name('product.view');
+Route::get('/product/search', [ProductController::class, "search"])->name('product.search');
 
 
 

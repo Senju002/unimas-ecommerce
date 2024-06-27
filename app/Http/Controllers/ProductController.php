@@ -193,4 +193,53 @@ class ProductController extends Controller
             "recentProduct" => $recentProduct,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $searchBy = $request->input('searchBy');
+        $categoryId = $request->input('categoryId');
+
+
+        $products = Product::with('category')->orderBy('id', 'desc');
+
+        if ($query) {
+            $products->where($searchBy, 'like', '%' . $query . '%');
+        }
+        if ($categoryId) {
+            $products->where('category_id', $categoryId);
+        }
+        $products = $products->paginate(20);
+
+        // Map the products to add image_url
+        $products->getCollection()->transform(function ($product) {
+            $product->image_url = asset($product->image);
+            return $product;
+        });
+
+        // Append the filter values to the pagination links
+        $filterValues = [];
+        if ($query) {
+            $filterValues['search'] = $query;
+        }
+        if ($searchBy) {
+            $filterValues['searchBy'] = $searchBy;
+        }
+        if ($categoryId) {
+            $filterValues['categoryId'] = $categoryId;
+        }
+        $products->appends($filterValues);
+
+        $productCategoryList = ProductCategory::pluck('category_name', 'id')->map(function ($Name, $Id) {
+            return ['label' => $Name, 'value' => $Id];
+        })->prepend(['label' => 'Pilih Kategori Produk', 'value' => ''])->values()->toArray();
+
+        return Inertia::render('Product/Search',  [
+            'data' => $products,
+            'search' => $query,
+            'searchBy' => $searchBy,
+            'categoryId' => $categoryId,
+            'productCategoryList' => $productCategoryList,
+        ]);
+    }
 }

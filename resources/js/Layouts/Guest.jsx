@@ -14,7 +14,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import LoginModal from "@/Components/LoginModal";
 import UserIcon from "@/Components/UserIcon";
 
-export default function Guest({ children, auth, title }) {
+export default function Guest({ children, auth, title, showSearch = true }) {
     const [openNav, setOpenNav] = React.useState(false);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
@@ -66,27 +66,31 @@ export default function Guest({ children, auth, title }) {
                         </Link>
                     </div>
 
-                    <div className="relative flex flex-1 gap-2 md:w-max mobile:hidden mx-4">
-                        <Input
-                            type="search"
-                            label="Cari Produk..."
-                            className=" !border-primary pl-9 placeholder:text-blue-gray-300 focus:!border-primary w-full"
-                            labelProps={{
-                                className:
-                                    "before:content-none after:content-none pl-8",
-                            }}
-                        />
-                        <div className="!absolute left-3 top-[11px]">
-                            <MagnifyingGlassIcon className="h-4 w-4 text-primary" />
-                        </div>
-                        <Button
-                            size="sm"
-                            // color="white"
-                            className="!absolute right-1 top-1 rounded bg-primary"
-                        >
-                            Search
-                        </Button>
-                    </div>
+                    {showSearch ? (
+                        <>
+                            <div className="relative flex flex-1 gap-2 md:w-max mobile:hidden mx-4">
+                                <Input
+                                    type="search"
+                                    label="Cari Produk..."
+                                    className=" !border-primary pl-9 placeholder:text-blue-gray-300 focus:!border-primary w-full"
+                                    labelProps={{
+                                        className:
+                                            "before:content-none after:content-none pl-8",
+                                    }}
+                                />
+                                <div className="!absolute left-3 top-[11px]">
+                                    <MagnifyingGlassIcon className="h-4 w-4 text-primary" />
+                                </div>
+                                <Button
+                                    size="sm"
+                                    // color="white"
+                                    className="!absolute right-1 top-1 rounded bg-primary"
+                                >
+                                    Search
+                                </Button>
+                            </div>
+                        </>
+                    ) : null}
 
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
