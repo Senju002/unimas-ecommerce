@@ -1,5 +1,5 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import { Link, Head } from "@inertiajs/react";
+import { Link, Head, router } from "@inertiajs/react";
 import {
     Navbar,
     Typography,
@@ -18,6 +18,16 @@ export default function Guest({ children, auth, title, showSearch = true }) {
     const [openNav, setOpenNav] = React.useState(false);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen((cur) => !cur);
+
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleSearch = () => {
+        router.visit(
+            `/product/search?search=${encodeURIComponent(
+                searchValue
+            )}&searchBy=product_name`
+        );
+    };
 
     React.useEffect(() => {
         window.addEventListener(
@@ -77,6 +87,10 @@ export default function Guest({ children, auth, title, showSearch = true }) {
                                         className:
                                             "before:content-none after:content-none pl-8",
                                     }}
+                                    value={searchValue}
+                                    onChange={(e) =>
+                                        setSearchValue(e.target.value)
+                                    }
                                 />
                                 <div className="!absolute left-3 top-[11px]">
                                     <MagnifyingGlassIcon className="h-4 w-4 text-primary" />
@@ -85,6 +99,7 @@ export default function Guest({ children, auth, title, showSearch = true }) {
                                     size="sm"
                                     // color="white"
                                     className="!absolute right-1 top-1 rounded bg-primary"
+                                    onClick={handleSearch}
                                 >
                                     Search
                                 </Button>
