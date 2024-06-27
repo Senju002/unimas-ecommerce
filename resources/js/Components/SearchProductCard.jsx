@@ -8,7 +8,7 @@ import {
     Button,
     IconButton,
 } from "@material-tailwind/react";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import LoginModal from "./LoginModal";
 
 export default function SearchProductCard({
@@ -27,10 +27,21 @@ export default function SearchProductCard({
         return str.length > num ? str.slice(0, num) + "..." : str;
     };
 
+    const [loading, setLoading] = useState(false);
+
     const handleClick = (e) => {
         e.preventDefault(); // Prevent the default link behavior
+        setLoading(true); // Start loading
         if (user) {
-            console.log("Ada User");
+            setTimeout(() => {
+                router.post(route("cart.add"), {
+                    user_id: user.id,
+                    product_id: id,
+                    quantity: 1,
+                });
+
+                setLoading(false);
+            }, 2000);
         } else {
             handleOpen();
         }
@@ -85,11 +96,13 @@ export default function SearchProductCard({
                         <Button
                             ripple={false}
                             variant="outlined"
+                            disabled={loading}
+                            loading={loading}
                             fullWidth={true}
                             className="text-primary border-primary shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100 mobile:hidden  "
                             onClick={handleClick}
                         >
-                            + Keranjang
+                            {loading ? "Keranjang" : "+ Keranjang"}
                         </Button>
                         <div
                             onClick={handleClick}

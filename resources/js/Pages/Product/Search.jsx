@@ -7,9 +7,11 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Footer from "@/Components/Footer";
 import SearchProductCard from "@/Components/SearchProductCard";
 import InputSelect from "@/Components/InputSelect";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Search(props) {
-    const { data, productCategoryList } = usePage().props;
+    const { data, productCategoryList, flash } = usePage().props;
     const [search, setSearch] = useState("");
     const [searchBy, setSearchBy] = useState("product_name");
 
@@ -39,6 +41,10 @@ export default function Search(props) {
     };
 
     const user = props.auth.user;
+
+    if (flash.message) {
+        toast.success(flash.message);
+    }
 
     return (
         <Guest auth={props.auth.user} title={"Cari Produk"} showSearch={false}>
@@ -229,6 +235,7 @@ export default function Search(props) {
                 </div>
             </div>
             <Footer />
+            <ToastContainer />
         </Guest>
     );
 }
