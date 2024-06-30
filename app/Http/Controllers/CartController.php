@@ -64,6 +64,7 @@ class CartController extends Controller
 
     public function remove(Cart $cart)
     {
+        // dd($cart);
         $cart->delete();
 
         return redirect()->back()->with('success', 'Item removed from cart successfully.');

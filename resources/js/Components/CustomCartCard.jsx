@@ -1,6 +1,14 @@
-import { Button, Typography } from "@material-tailwind/react";
+import {
+    Button,
+    IconButton,
+    Tooltip,
+    Typography,
+} from "@material-tailwind/react";
 import React, { useState } from "react";
 import { router } from "@inertiajs/react";
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CustomCartCard({
     imageUrl,
@@ -42,6 +50,47 @@ export default function CustomCartCard({
         });
     };
 
+    const handleDelete = (id) => {
+        toast.info(
+            <div className="p-4 text-center">
+                <p>
+                    Apakah Anda ingin Menghapus Produk Ini dari Keranjang Anda?{" "}
+                </p>
+                <div className="mt-4 flex justify-end">
+                    <button
+                        className="px-4 py-2 mr-2 bg-red-500 text-white rounded hover:bg-red-700"
+                        onClick={() => deleteData(id)}
+                    >
+                        Yes
+                    </button>
+                    <button
+                        className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700"
+                        onClick={() => toast.dismiss()}
+                    >
+                        No
+                    </button>
+                </div>
+            </div>,
+            {
+                icon: false,
+                closeOnClick: false,
+                draggable: false,
+                closeButton: false,
+                autoClose: false,
+                hideProgressBar: true,
+                // position: toast.POSITION.TOP_CENTER,
+                position: "top-center",
+            }
+        );
+    };
+
+    const deleteData = (id) => {
+        // Send the delete request here
+        // ...
+        router.post(`/cart/${cartId}/remove`, { id });
+        toast.dismiss();
+    };
+
     return (
         <div className="bg-white mt-2 rounded-2xl shadow-xl h-full">
             <div className="flex flex-row gap-2 justify-between mx-4 py-4">
@@ -66,23 +115,35 @@ export default function CustomCartCard({
                         {formatPrice(price)}
                     </Typography>
 
-                    <div className="flex items-center justify-between space-x-2 border-2 border-primary rounded-lg w-36 mobile:w-32">
-                        <Button
-                            onClick={decrementCounter}
-                            className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
+                    <div className="flex flex-row items-center gap-10">
+                        <IconButton
+                            variant="outlined"
+                            color="red"
+                            onClick={() => handleDelete(cartId)}
                         >
-                            -
-                        </Button>
-                        <span className="text-lg font-semibold">{counter}</span>
-                        <Button
-                            onClick={incrementCounter}
-                            className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
-                        >
-                            +
-                        </Button>
+                            <TrashIcon className="h-4 w-4" />
+                        </IconButton>
+                        <div className="flex items-center justify-between space-x-2 border-2 border-primary rounded-lg w-36 mobile:w-32">
+                            <Button
+                                onClick={decrementCounter}
+                                className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
+                            >
+                                -
+                            </Button>
+                            <span className="text-lg font-semibold">
+                                {counter}
+                            </span>
+                            <Button
+                                onClick={incrementCounter}
+                                className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
+                            >
+                                +
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }

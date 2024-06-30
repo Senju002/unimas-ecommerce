@@ -95,7 +95,7 @@ Route::middleware('auth', 'role:USER')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/{cart}/update', [CartController::class, 'update'])->name('cart.update');
-    Route::post('/cart/remove/{cart}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/{cart}/remove', [CartController::class, 'remove'])->name('cart.remove');
 });
 
 require __DIR__ . '/auth.php';
