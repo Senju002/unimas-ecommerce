@@ -88,7 +88,7 @@ export default function CustomCartCard({
         // Send the delete request here
         // ...
         router.post(`/cart/${cartId}/remove`, { id });
-        toast.dismiss();
+        // toast.dismiss();
     };
 
     return (
@@ -101,41 +101,41 @@ export default function CustomCartCard({
                         className="object-cover w-32 h-full mobile:w-24  rounded-lg  "
                     />
                     <div className="flex flex-col ">
-                        <Typography className="text-primary font-extrabold">
+                        <Typography className="text-primary font-extrabold mobile:text-sm">
                             Stok : {stockQty}
                         </Typography>
-                        <Typography className="font-extrabold text-xl">
+                        <Typography className="font-extrabold text-xl mobile:text-sm">
                             {productName}
                         </Typography>
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <Typography className="font-extrabold text-xl text-right">
+                    <Typography className="font-extrabold text-xl text-right mobile:text-sm mr-2">
                         {formatPrice(price)}
                     </Typography>
 
-                    <div className="flex flex-row items-center gap-10">
+                    <div className="flex flex-row items-center gap-10 mobile:gap-2 mobile:flex-col-reverse">
                         <IconButton
                             variant="outlined"
                             color="red"
-                            onClick={() => handleDelete(cartId)}
+                            onClick={() => deleteData(cartId)}
                         >
                             <TrashIcon className="h-4 w-4" />
                         </IconButton>
-                        <div className="flex items-center justify-between space-x-2 border-2 border-primary rounded-lg w-36 mobile:w-32">
+                        <div className="flex items-center justify-between space-x-2 border-2 border-primary rounded-lg w-36 mobile:w-32 mr-2">
                             <Button
                                 onClick={decrementCounter}
-                                className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
+                                className="bg-white  text-primary text-xl mobile:text-sm  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
                             >
                                 -
                             </Button>
-                            <span className="text-lg font-semibold">
+                            <span className="text-lg font-semibold mobile:text-sm">
                                 {counter}
                             </span>
                             <Button
                                 onClick={incrementCounter}
-                                className="bg-white  text-primary text-xl  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
+                                className="bg-white  text-primary text-xl mobile:text-sm  font-bold py-2 px-4 rounded-r shadow-none hover:shadow-none"
                             >
                                 +
                             </Button>
