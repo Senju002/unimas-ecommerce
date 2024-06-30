@@ -1,13 +1,16 @@
 import Footer from "@/Components/Footer";
+import LoginModal from "@/Components/LoginModal";
 import ProductCard from "@/Components/ProductCard";
 import ProductCarousel from "@/Components/ProductCarousel";
 import Guest from "@/Layouts/Guest";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import { Button, Typography } from "@material-tailwind/react";
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function View(props) {
-    const { productData, recentProduct } = usePage().props;
+    const { productData, recentProduct, flash } = usePage().props;
     const [counter, setCounter] = useState(1);
     const maxQuantity = productData.quantity;
     const incrementCounter = () => {
@@ -16,9 +19,65 @@ export default function View(props) {
         }
     };
 
+    if (flash.message) {
+        toast.success(flash.message);
+    }
+
     const decrementCounter = () => {
         if (counter > 1) {
             setCounter(counter - 1);
+        }
+    };
+
+    const productId = productData.id;
+    console.log(productId);
+
+    // router.post(`/cart/add`, {
+    //     product_id: productId,
+    //     quantity: newCounter,
+    // });
+
+    // const incrementCounter = () => {
+    //     setCounter((prevCounter) => {
+    //         const newCounter =
+    //             prevCounter < maxQuantity ? prevCounter + 1 : prevCounter;
+    //         // console.log(cartId + ":" + newCounter);
+    //         // router.post(`/cart/${cartId}/update`, {
+    //         //     quantity: newCounter,
+    //         // });
+    //         return newCounter;
+    //     });
+    // };
+
+    // const decrementCounter = () => {
+    //     setCounter((prevCounter) => {
+    //         const newCounter = prevCounter > 1 ? prevCounter - 1 : prevCounter;
+    //         // console.log(cartId + ":" + newCounter);
+    //         // router.post(`/cart/${cartId}/update`, {
+    //         //     quantity: newCounter,
+    //         // });
+    //         return newCounter;
+    //     });
+    // };
+
+    const [loading, setLoading] = useState(false); // Add loading state
+
+    const handleClick = (e) => {
+        e.preventDefault(); // Prevent the default link behavior
+        setLoading(true); // Start loading
+        if (props.auth.user) {
+            setTimeout(() => {
+                router.post(route("cart.add"), {
+                    user_id: props.auth.user.id,
+                    product_id: productId,
+                    quantity: counter,
+                });
+
+                setLoading(false);
+            }, 2000);
+        } else {
+            handleOpen();
+            setLoading(false);
         }
     };
 
@@ -31,6 +90,9 @@ export default function View(props) {
         style: "currency",
         currency: "IDR",
     }).format(productData.price);
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
 
     return (
         <Guest auth={props.auth.user} title={productData.product_name}>
@@ -98,6 +160,9 @@ export default function View(props) {
                                             variant="outlined"
                                             ripple={true}
                                             className="bg-transparent text-white bg-primary font-bold py-3 px-4 rounded-lg mb-4 w-54 w-full tablet:w-full border-primary tablet:mb-[1em]  "
+                                            onClick={handleClick}
+                                            disabled={loading}
+                                            loading={loading}
                                         >
                                             KERANJANG
                                         </Button>
@@ -142,6 +207,8 @@ export default function View(props) {
                 </div>
             </div>
             <Footer />
+            <LoginModal handleOpen={handleOpen} open={open} />
+            <ToastContainer />
         </Guest>
     );
 }
