@@ -54,6 +54,7 @@ class CartController extends Controller
 
     public function update(Cart $cart, Request $request)
     {
+        // dd($cart);
         $cart->update([
             'quantity' => $request->quantity,
         ]);

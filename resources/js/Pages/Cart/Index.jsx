@@ -27,6 +27,7 @@ export default function Index(props) {
                                     productName={cart.product.product_name}
                                     stockQty={cart.product.quantity}
                                     productToBuyQty={cart.quantity}
+                                    cartId={cart.id}
                                 />
                             ))
                         )}

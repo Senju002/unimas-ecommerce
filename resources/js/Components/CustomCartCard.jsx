@@ -1,5 +1,6 @@
 import { Button, Typography } from "@material-tailwind/react";
 import React, { useState } from "react";
+import { router } from "@inertiajs/react";
 
 export default function CustomCartCard({
     imageUrl,
@@ -7,6 +8,7 @@ export default function CustomCartCard({
     stockQty,
     price,
     productToBuyQty,
+    cartId = 1,
 }) {
     function formatPrice(price) {
         return new Intl.NumberFormat("id-ID", {
@@ -18,16 +20,28 @@ export default function CustomCartCard({
     const [counter, setCounter] = useState(productToBuyQty);
     const maxQuantity = stockQty;
     const incrementCounter = () => {
-        if (counter < maxQuantity) {
-            setCounter(counter + 1);
-        }
+        setCounter((prevCounter) => {
+            const newCounter =
+                prevCounter < maxQuantity ? prevCounter + 1 : prevCounter;
+            // console.log(cartId + ":" + newCounter);
+            router.post(`/cart/${cartId}/update`, {
+                quantity: newCounter,
+            });
+            return newCounter;
+        });
     };
 
     const decrementCounter = () => {
-        if (counter > 1) {
-            setCounter(counter - 1);
-        }
+        setCounter((prevCounter) => {
+            const newCounter = prevCounter > 1 ? prevCounter - 1 : prevCounter;
+            // console.log(cartId + ":" + newCounter);
+            router.post(`/cart/${cartId}/update`, {
+                quantity: newCounter,
+            });
+            return newCounter;
+        });
     };
+
     return (
         <div className="bg-white mt-2 rounded-2xl shadow-xl h-full">
             <div className="flex flex-row gap-2 justify-between mx-4 py-4">
