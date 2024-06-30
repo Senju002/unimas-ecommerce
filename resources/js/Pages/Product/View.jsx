@@ -193,6 +193,7 @@ export default function View(props) {
                                 {recentProduct.map((product) => (
                                     <ProductCard
                                         key={product.id}
+                                        user={props.auth.user}
                                         id={product.id}
                                         image={product.image_url}
                                         name={product.product_name}
